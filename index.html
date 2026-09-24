@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe de Proyecto - Armaduras</title>
+
+    <style>
+        :root {
+            --azul-principal: #123c69;
+            --azul-secundario: #1d5c96;
+            --azul-claro: #eaf2f8;
+            --gris-fondo: #eef2f6;
+            --gris-texto: #2b2b2b;
+            --gris-suave: #6b7280;
+            --blanco: #ffffff;
+            --sombra: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --borde: #d9e2ec;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e9eef4, #f5f7fa);
+            color: var(--gris-texto);
+            padding: 30px 15px;
+        }
+
+        .pagina {
+            max-width: 950px;
+            margin: auto;
+            background: var(--blanco);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            border: 1px solid #dde6ee;
+        }
+
+        .franja-superior {
+            height: 10px;
+            background: linear-gradient(90deg, var(--azul-principal), var(--azul-secundario));
+        }
+
+        .encabezado {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 30px 35px 20px;
+            background: linear-gradient(180deg, #f8fbfe, #ffffff);
+            border-bottom: 1px solid var(--borde);
+            flex-wrap: wrap;
+        }
+
+        .encabezado-izq {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .logo-box {
+            width: 90px;
+            height: 90px;
+            border-radius: 16px;
+            background: var(--azul-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #d5e2ee;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .logo-box img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+        }
+
+        .logo-texto h1 {
+            font-size: 1.8rem;
+            color: var(--azul-principal);
+            margin-bottom: 5px;
+        }
+
+        .logo-texto h2 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gris-suave);
+        }
+
+        .encabezado-der {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 160px;
+        }
+
+        .ingeniero-badge {
+            width: 105px;
+            height: 105px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--azul-principal), var(--azul-secundario));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: 0 8px 20px rgba(18, 60, 105, 0.20);
+            position: relative;
+        }
+
+        .ingeniero-badge::after {
+            content: "Ingeniería Civil";
+            position: absolute;
+            bottom: -28px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--azul-principal);
+            background: white;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid #d7e2ec;
+            white-space: nowrap;
+        }
+
+        .contenido {
+            padding: 35px;
+        }
+
+        .portada-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .dato {
+            background: #f8fafc;
+            border: 1px solid var(--borde);
+            border-left: 5px solid var(--azul-secundario);
+            border-radius: 12px;
+            padding: 14px 16px;
+        }
+
+        .dato strong {
+            display: block;
+            color: var(--azul-principal);
+            margin-bottom: 4px;
+            font-size: 0.95rem;
+        }
+
+        .titulo-seccion {
+            color: var(--azul-principal);
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e6edf5;
+        }
+
+        section {
+            margin-bottom: 24px;
+        }
+
+        p {
+            text-align: justify;
+            line-height: 1.75;
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        .resaltado {
+            background: linear-gradient(135deg, #f3f8fd, #eef5fb);
+            border: 1px solid #dbe7f2;
+            border-left: 5px solid var(--azul-principal);
+            padding: 18px 20px;
+            border-radius: 12px;
+            margin: 22px 0;
+            color: #28435e;
+            font-style: italic;
+        }
+
+        .objetivos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .objetivos-box {
+            background: #fbfdff;
+            border: 1px solid var(--borde);
+            border-radius: 14px;
+            padding: 18px 20px;
+        }
+
+        .objetivos-box h3 {
+            color: var(--azul-principal);
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        .objetivos-box ul {
+            padding-left: 18px;
+        }
+
+        .objetivos-box li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .tarjeta-final {
+            background: linear-gradient(135deg, var(--azul-principal), var(--azul-secundario));
+            color: white;
+            padding: 22px;
+            border-radius: 16px;
+            margin-top: 25px;
+        }
+
+        .tarjeta-final h3 {
+            margin-bottom: 10px;
+            font-size: 1.15rem;
+        }
+
+        .tarjeta-final p {
+            margin-bottom: 0;
+            color: rgba(255, 255, 255, 0.96);
+        }
+
+        .pie {
+            text-align: center;
+            padding: 18px 25px 25px;
+            color: var(--gris-suave);
+            font-size: 0.92rem;
+            border-top: 1px solid var(--borde);
+            background: #fafcff;
+        }
+
+        @media (max-width: 768px) {
+            .encabezado {
+                padding: 25px 20px 35px;
+            }
+
+            .contenido {
+                padding: 25px 20px;
+            }
+
+            .objetivos {
+                grid-template-columns: 1fr;
+            }
+
+            .logo-texto h1 {
+                font-size: 1.45rem;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .pagina {
+                box-shadow: none;
+                border-radius: 0;
+                border: none;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="pagina">
+        <div class="franja-superior"></div>
+
+        <header class="encabezado">
+            <div class="encabezado-izq">
+                <div class="logo-box">
+                    <!-- Coloca aquí el logo de la UAD -->
+                    <!-- Guarda una imagen como uad-logo.png en la misma carpeta -->
+                    <img src="uad-logo.png" alt="Logo Universidad Autónoma de Durango">
+                </div>
+
+                <div class="logo-texto">
+                    <h1>Informe de Proyecto</h1>
+                    <h2>Análisis experimental de armaduras impresas en 3D</h2>
+                </div>
+            </div>
+
+            <div class="encabezado-der">
+                <div class="ingeniero-badge">👷</div>
+            </div>
+        </header>
+
+        <main class="contenido">
+
+            <div class="portada-info">
+                <div class="dato">
+                    <strong>Alumno</strong>
+                    Joan Sebastian García Orozco
+                </div>
+
+                <div class="dato">
+                    <strong>Docente</strong>
+                    Rogelio Montelongo
+                </div>
+
+                <div class="dato">
+                    <strong>Carrera</strong>
+                    Ingeniería Civil
+                </div>
+
+                <div class="dato">
+                    <strong>Institución</strong>
+                    Universidad Autónoma de Durango
+                </div>
+            </div>
+
+            <section>
+                <h2 class="titulo-seccion">Descripción del proyecto</h2>
+                <p>
+                    El presente proyecto tiene como finalidad analizar el comportamiento de diferentes
+                    armaduras utilizadas en ingeniería civil mediante la combinación de herramientas
+                    tecnológicas y experimentación física. La propuesta consiste en diseñar diversos
+                    modelos de armaduras, fabricarlos con impresión 3D y posteriormente someterlos
+                    a distintas condiciones de carga para observar su respuesta estructural.
+                </p>
+
+                <p>
+                    A través de este trabajo se busca comprender de una manera más visual y práctica
+                    cómo actúan los esfuerzos de tensión y compresión dentro de los elementos de una
+                    armadura, así como identificar la influencia de variables como la geometría,
+                    el porcentaje de relleno de impresión, la cantidad de material y la posición
+                    de las cargas aplicadas.
+                </p>
+            </section>
+
+            <div class="resaltado">
+                Este proyecto une la teoría estructural con la experimentación, permitiendo observar
+                de forma física y digital el comportamiento de armaduras ante distintas cargas.
+            </div>
+
+            <section>
+                <h2 class="titulo-seccion">Desarrollo e integración tecnológica</h2>
+                <p>
+                    Para el desarrollo del proyecto se contempla el uso de herramientas digitales
+                    como Civil Calculator, programación en Visual Studio Code e inteligencia artificial,
+                    con el propósito de apoyar el análisis estructural y facilitar la interpretación
+                    de resultados. Estas herramientas permitirán comparar los cálculos teóricos con
+                    el comportamiento real observado en los modelos impresos.
+                </p>
+
+                <p>
+                    Además, el uso de impresión 3D permitirá construir prototipos funcionales con
+                    distintas configuraciones, haciendo posible analizar experimentalmente el efecto
+                    de diversas condiciones de fabricación sobre la resistencia y estabilidad de
+                    las armaduras. Esto convierte al proyecto en una propuesta didáctica y aplicada,
+                    útil para reforzar los conocimientos adquiridos en el área de estructuras.
+                </p>
+            </section>
+
+            <section class="objetivos">
+                <div class="objetivos-box">
+                    <h3>Objetivos del proyecto</h3>
+                    <ul>
+                        <li>Diseñar diferentes tipos de armaduras.</li>
+                        <li>Fabricar modelos mediante impresión 3D.</li>
+                        <li>Aplicar distintas cargas sobre las estructuras.</li>
+                        <li>Observar deformaciones y distribución de esfuerzos.</li>
+                    </ul>
+                </div>
+
+                <div class="objetivos-box">
+                    <h3>Resultados esperados</h3>
+                    <ul>
+                        <li>Comparar teoría y práctica estructural.</li>
+                        <li>Identificar elementos a tensión y compresión.</li>
+                        <li>Evaluar el efecto del relleno y material impreso.</li>
+                        <li>Fortalecer el aprendizaje con apoyo digital.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="titulo-seccion">Conclusión</h2>
+                <p>
+                    En conclusión, este proyecto representa una forma innovadora de estudiar armaduras
+                    dentro de la ingeniería civil, al integrar diseño, impresión 3D, análisis estructural
+                    y herramientas digitales. Más allá de obtener resultados matemáticos, se busca
+                    visualizar físicamente la forma en que una estructura responde ante distintas
+                    condiciones de carga, fortaleciendo así la comprensión de los principios teóricos
+                    de una manera más dinámica y aplicada.
+                </p>
+            </section>
+
+            <div class="tarjeta-final">
+                <h3>Proyecto académico</h3>
+                <p>
+                    Trabajo enfocado en el análisis experimental de armaduras impresas en 3D,
+                    orientado al aprendizaje práctico de conceptos estructurales en Ingeniería Civil.
+                </p>
+            </div>
+
+        </main>
+
+        <footer class="pie">
+            Universidad Autónoma de Durango · Ingeniería Civil · Informe de Proyecto
+        </footer>
+    </div>
+
+</body>
+</html>
