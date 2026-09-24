@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto de Armaduras | Ingeniería Civil UAD</title>
+
+    <style>
+        :root{
+            --azul:#0f2742;
+            --azul2:#173f67;
+            --azul3:#24679c;
+            --celeste:#dfeefa;
+            --gris:#f3f6f9;
+            --gris2:#d6dee7;
+            --texto:#1d2732;
+            --texto2:#64707d;
+            --blanco:#ffffff;
+            --acento:#c59a4b;
+            --sombra:0 20px 50px rgba(15,39,66,.12);
+        }
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        body{
+            font-family: "Segoe UI", Arial, sans-serif;
+            background:
+                linear-gradient(rgba(255,255,255,.94),rgba(255,255,255,.94)),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 39px,
+                    rgba(15,39,66,.04) 40px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 39px,
+                    rgba(15,39,66,.04) 40px
+                );
+            color:var(--texto);
+        }
+
+        .pagina{
+            max-width:1180px;
+            margin:35px auto;
+            background:var(--blanco);
+            box-shadow:var(--sombra);
+            border-radius:24px;
+            overflow:hidden;
+            border:1px solid #e1e7ee;
+        }
+
+        .barra-superior{
+            height:7px;
+            background:linear-gradient(90deg,var(--azul),var(--azul3),var(--acento));
+        }
+
+        .hero{
+            position:relative;
+            overflow:hidden;
+            padding:48px 55px 52px;
+            background:
+                linear-gradient(135deg, rgba(15,39,66,.98), rgba(23,63,103,.95));
+            color:white;
+        }
+
+        .hero::before{
+            content:"";
+            position:absolute;
+            width:460px;
+            height:460px;
+            border:1px solid rgba(255,255,255,.08);
+            border-radius:50%;
+            right:-170px;
+            top:-170px;
+        }
+
+        .hero::after{
+            content:"";
+            position:absolute;
+            width:300px;
+            height:300px;
+            border:1px solid rgba(255,255,255,.06);
+            border-radius:50%;
+            right:-60px;
+            bottom:-180px;
+        }
+
+        .hero-grid{
+            position:relative;
+            z-index:2;
+            display:grid;
+            grid-template-columns:1.5fr .7fr;
+            gap:40px;
+            align-items:center;
+        }
+
+        .marca{
+            display:flex;
+            gap:20px;
+            align-items:center;
+            margin-bottom:30px;
+        }
+
+        .logo{
+            width:100px;
+            height:100px;
+            border-radius:22px;
+            background:white;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:12px;
+            box-shadow:0 12px 30px rgba(0,0,0,.18);
+        }
+
+        .logo img{
+            max-width:100%;
+            max-height:100%;
+            object-fit:contain;
+        }
+
+        .universidad{
+            font-size:.85rem;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            opacity:.72;
+            margin-bottom:5px;
+        }
+
+        .hero h1{
+            font-size:3.4rem;
+            line-height:1.04;
+            font-weight:800;
+            margin-bottom:14px;
+        }
+
+        .hero h1 span{
+            color:#a9d6f5;
+        }
+
+        .hero-sub{
+            font-size:1.15rem;
+            line-height:1.7;
+            max-width:680px;
+            color:rgba(255,255,255,.86);
+            margin-bottom:26px;
+        }
+
+        .etiquetas{
+            display:flex;
+            gap:10px;
+            flex-wrap:wrap;
+        }
+
+        .tag{
+            border:1px solid rgba(255,255,255,.18);
+            background:rgba(255,255,255,.08);
+            backdrop-filter:blur(6px);
+            border-radius:999px;
+            padding:8px 13px;
+            font-size:.88rem;
+        }
+
+        .ingeniero-card{
+            position:relative;
+            background:rgba(255,255,255,.08);
+            border:1px solid rgba(255,255,255,.16);
+            border-radius:28px;
+            padding:28px;
+            text-align:center;
+            backdrop-filter:blur(10px);
+        }
+
+        .ingeniero-icon{
+            width:140px;
+            height:140px;
+            margin:auto;
+            border-radius:50%;
+            background:linear-gradient(145deg,#fff,#dfeefa);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:4.5rem;
+            box-shadow:0 16px 35px rgba(0,0,0,.20);
+            color:var(--azul);
+        }
+
+        .ingeniero-card h3{
+            margin-top:20px;
+            font-size:1.15rem;
+        }
+
+        .ingeniero-card p{
+            color:rgba(255,255,255,.68);
+            font-size:.9rem;
+            margin-top:5px;
+        }
+
+        .datos{
+            background:#f7fafc;
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            border-bottom:1px solid #dde5ed;
+        }
+
+        .dato{
+            padding:22px 20px;
+            text-align:center;
+            border-right:1px solid #dde5ed;
+        }
+
+        .dato:last-child{
+            border-right:none;
+        }
+
+        .dato small{
+            display:block;
+            text-transform:uppercase;
+            letter-spacing:1.2px;
+            color:var(--texto2);
+            font-size:.72rem;
+            margin-bottom:7px;
+        }
+
+        .dato strong{
+            color:var(--azul);
+            font-size:.96rem;
+        }
+
+        .contenido{
+            padding:48px 55px 55px;
+        }
+
+        .intro{
+            display:grid;
+            grid-template-columns:1.4fr .6fr;
+            gap:30px;
+            align-items:stretch;
+            margin-bottom:40px;
+        }
+
+        .bloque-principal{
+            background:white;
+            border:1px solid #dfe6ed;
+            border-radius:20px;
+            padding:30px;
+            box-shadow:0 10px 30px rgba(15,39,66,.05);
+        }
+
+        .numero{
+            font-size:.78rem;
+            font-weight:800;
+            color:var(--azul3);
+            letter-spacing:1.5px;
+            text-transform:uppercase;
+            margin-bottom:8px;
+        }
+
+        h2{
+            font-size:1.8rem;
+            color:var(--azul);
+            margin-bottom:16px;
+        }
+
+        p{
+            line-height:1.8;
+            text-align:justify;
+            margin-bottom:14px;
+            color:#37424d;
+        }
+
+        .frase{
+            background:linear-gradient(145deg,var(--azul),var(--azul2));
+            color:white;
+            border-radius:20px;
+            padding:28px;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            position:relative;
+            overflow:hidden;
+        }
+
+        .frase::after{
+            content:"";
+            position:absolute;
+            width:130px;
+            height:130px;
+            border:1px solid rgba(255,255,255,.12);
+            border-radius:50%;
+            right:-40px;
+            bottom:-40px;
+        }
+
+        .frase .comillas{
+            font-size:4rem;
+            line-height:1;
+            opacity:.35;
+        }
+
+        .frase p{
+            color:white;
+            font-style:italic;
+            font-size:1.06rem;
+            margin:0;
+        }
+
+        .seccion{
+            margin-top:38px;
+        }
+
+        .seccion-header{
+            display:flex;
+            align-items:end;
+            justify-content:space-between;
+            gap:20px;
+            margin-bottom:20px;
+            border-bottom:1px solid #dfe6ed;
+            padding-bottom:14px;
+        }
+
+        .seccion-header h2{
+            margin:0;
+        }
+
+        .seccion-header span{
+            color:var(--texto2);
+            font-size:.88rem;
+        }
+
+        .cards{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:16px;
+        }
+
+        .card{
+            border:1px solid #dde6ee;
+            border-radius:18px;
+            padding:22px;
+            background:linear-gradient(180deg,#ffffff,#f8fbfd);
+            transition:.25s ease;
+        }
+
+        .card:hover{
+            transform:translateY(-4px);
+            box-shadow:0 12px 28px rgba(15,39,66,.10);
+        }
+
+        .card-icon{
+            width:48px;
+            height:48px;
+            border-radius:13px;
+            background:var(--celeste);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:1.5rem;
+            margin-bottom:16px;
+        }
+
+        .card h3{
+            color:var(--azul);
+            font-size:1rem;
+            margin-bottom:8px;
+        }
+
+        .card p{
+            font-size:.9rem;
+            margin:0;
+            text-align:left;
+            color:#5a6672;
+            line-height:1.6;
+        }
+
+        .metodologia{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:0;
+            margin-top:18px;
+            border:1px solid #dfe6ed;
+            border-radius:20px;
+            overflow:hidden;
+        }
+
+        .paso{
+            padding:24px 20px;
+            position:relative;
+            background:white;
+            border-right:1px solid #e2e8ee;
+        }
+
+        .paso:last-child{
+            border-right:none;
+        }
+
+        .paso-num{
+            width:36px;
+            height:36px;
+            border-radius:50%;
+            background:var(--azul);
+            color:white;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:700;
+            margin-bottom:14px;
+        }
+
+        .paso h4{
+            color:var(--azul);
+            margin-bottom:8px;
+        }
+
+        .paso p{
+            font-size:.88rem;
+            line-height:1.6;
+            margin:0;
+            text-align:left;
+            color:var(--texto2);
+        }
+
+        .tecnologia{
+            display:grid;
+            grid-template-columns:1fr 1fr 1fr;
+            gap:16px;
+            margin-top:18px;
+        }
+
+        .tech{
+            border-radius:18px;
+            padding:22px;
+            border:1px solid #dce5ed;
+            background:#fbfdff;
+        }
+
+        .tech strong{
+            display:block;
+            color:var(--azul);
+            margin-bottom:7px;
+        }
+
+        .tech span{
+            color:var(--texto2);
+            font-size:.9rem;
+            line-height:1.55;
+        }
+
+        .conclusion{
+            margin-top:40px;
+            border-radius:22px;
+            background:
+                linear-gradient(135deg,rgba(15,39,66,.98),rgba(36,103,156,.94));
+            color:white;
+            padding:32px;
+            position:relative;
+            overflow:hidden;
+        }
+
+        .conclusion h2{
+            color:white;
+        }
+
+        .conclusion p{
+            color:rgba(255,255,255,.9);
+            margin:0;
+        }
+
+        .firma{
+            margin-top:36px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            border-top:1px solid #dfe6ed;
+            padding-top:22px;
+            color:var(--texto2);
+            font-size:.87rem;
+        }
+
+        .firma strong{
+            color:var(--azul);
+        }
+
+        footer{
+            background:#0d2238;
+            color:rgba(255,255,255,.68);
+            padding:22px 55px;
+            display:flex;
+            justify-content:space-between;
+            font-size:.84rem;
+        }
+
+        @media(max-width:900px){
+            .hero-grid,
+            .intro{
+                grid-template-columns:1fr;
+            }
+
+            .datos{
+                grid-template-columns:1fr 1fr;
+            }
+
+            .cards{
+                grid-template-columns:1fr 1fr;
+            }
+
+            .metodologia{
+                grid-template-columns:1fr 1fr;
+            }
+
+            .tecnologia{
+                grid-template-columns:1fr;
+            }
+
+            .hero h1{
+                font-size:2.5rem;
+            }
+        }
+
+        @media(max-width:600px){
+            .pagina{
+                margin:0;
+                border-radius:0;
+            }
+
+            .hero,
+            .contenido{
+                padding:30px 22px;
+            }
+
+            .datos,
+            .cards,
+            .metodologia{
+                grid-template-columns:1fr;
+            }
+
+            .dato,
+            .paso{
+                border-right:none;
+                border-bottom:1px solid #e2e8ee;
+            }
+
+            footer{
+                padding:20px 22px;
+                flex-direction:column;
+                gap:6px;
+            }
+        }
+
+        @media print{
+            body{
+                background:white;
+            }
+
+            .pagina{
+                box-shadow:none;
+                margin:0;
+                max-width:100%;
+                border-radius:0;
+            }
+
+            .card:hover{
+                transform:none;
+                box-shadow:none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="pagina">
+
+    <div class="barra-superior"></div>
+
+    <section class="hero">
+        <div class="hero-grid">
+
+            <div>
+                <div class="marca">
+                    <div class="logo">
+                        <img src="uad-logo.png" alt="Logo UAD">
+                    </div>
+
+                    <div>
+                        <div class="universidad">
+                            Universidad Autónoma de Durango
+                        </div>
+                        <strong>Ingeniería Civil</strong>
+                    </div>
+                </div>
+
+                <h1>
+                    Análisis de <span>Armaduras</span>
+                    mediante impresión 3D
+                </h1>
+
+                <div class="hero-sub">
+                    Informe de avance de proyecto enfocado en el estudio estructural,
+                    experimentación física, programación y uso de herramientas digitales
+                    aplicadas a la Ingeniería Civil.
+                </div>
+
+                <div class="etiquetas">
+                    <div class="tag">Impresión 3D</div>
+                    <div class="tag">Análisis estructural</div>
+                    <div class="tag">Civil Calculator</div>
+                    <div class="tag">Inteligencia Artificial</div>
+                </div>
+            </div>
+
+            <div class="ingeniero-card">
+                <div class="ingeniero-icon">👷‍♂️</div>
+                <h3>Proyecto de Ingeniería Civil</h3>
+                <p>Diseño · Análisis · Experimentación</p>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="datos">
+
+        <div class="dato">
+            <small>Alumno</small>
+            <strong>Joan Sebastian García Orozco</strong>
+        </div>
+
+        <div class="dato">
+            <small>Docente</small>
+            <strong>Rogelio Montelongo</strong>
+        </div>
+
+        <div class="dato">
+            <small>Carrera</small>
+            <strong>Ingeniería Civil</strong>
+        </div>
+
+        <div class="dato">
+            <small>Institución</small>
+            <strong>Universidad Autónoma de Durango</strong>
+        </div>
+
+    </div>
+
+    <main class="contenido">
+
+        <div class="intro">
+
+            <section class="bloque-principal">
+                <div class="numero">01 · Descripción general</div>
+                <h2>Planteamiento del proyecto</h2>
+
+                <p>
+                    El presente proyecto tiene como finalidad analizar el comportamiento de
+                    diferentes armaduras utilizadas en Ingeniería Civil mediante una combinación
+                    de experimentación física y herramientas digitales. La propuesta consiste en
+                    diseñar distintos modelos de armaduras, fabricarlos utilizando impresión 3D
+                    y posteriormente someterlos a diferentes condiciones de carga.
+                </p>
+
+                <p>
+                    A partir de estas pruebas se pretende observar la forma en que las fuerzas se
+                    transmiten a través de sus elementos, identificando aquellos miembros que
+                    trabajan principalmente a tensión y aquellos que trabajan a compresión.
+                    También se busca analizar la influencia que pueden tener factores como la
+                    geometría, el porcentaje de relleno, la cantidad de material utilizado y
+                    la posición de las cargas.
+                </p>
+            </section>
+
+            <aside class="frase">
+                <div class="comillas">“</div>
+                <p>
+                    La finalidad es convertir conceptos estructurales que normalmente se analizan
+                    mediante ecuaciones y diagramas en un experimento físico observable.
+                </p>
+            </aside>
+
+        </div>
+
+        <section class="seccion">
+
+            <div class="seccion-header">
+                <div>
+                    <div class="numero">02 · Objetivos</div>
+                    <h2>Alcance del proyecto</h2>
+                </div>
+
+                <span>Aplicación teórica y experimental</span>
+            </div>
+
+            <div class="cards">
+
+                <div class="card">
+                    <div class="card-icon">📐</div>
+                    <h3>Diseño estructural</h3>
+                    <p>
+                        Diseñar distintas geometrías de armaduras para comparar
+                        su comportamiento ante cargas similares.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🖨️</div>
+                    <h3>Impresión 3D</h3>
+                    <p>
+                        Fabricar modelos físicos variando características como
+                        porcentaje de relleno y cantidad de material.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🏗️</div>
+                    <h3>Aplicación de cargas</h3>
+                    <p>
+                        Someter las armaduras a diferentes magnitudes y posiciones
+                        de carga para observar su respuesta.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Comparación</h3>
+                    <p>
+                        Contrastar los resultados experimentales con los obtenidos
+                        mediante cálculos estructurales.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="seccion">
+
+            <div class="seccion-header">
+                <div>
+                    <div class="numero">03 · Metodología</div>
+                    <h2>Proceso de trabajo</h2>
+                </div>
+            </div>
+
+            <div class="metodologia">
+
+                <div class="paso">
+                    <div class="paso-num">1</div>
+                    <h4>Diseño</h4>
+                    <p>
+                        Selección de geometrías y definición de dimensiones para
+                        los modelos de armaduras.
+                    </p>
+                </div>
+
+                <div class="paso">
+                    <div class="paso-num">2</div>
+                    <h4>Fabricación</h4>
+                    <p>
+                        Impresión de los prototipos en 3D utilizando diferentes
+                        condiciones de fabricación.
+                    </p>
+                </div>
+
+                <div class="paso">
+                    <div class="paso-num">3</div>
+                    <h4>Ensayo</h4>
+                    <p>
+                        Aplicación progresiva de cargas para observar deformaciones
+                        y posibles puntos críticos.
+                    </p>
+                </div>
+
+                <div class="paso">
+                    <div class="paso-num">4</div>
+                    <h4>Análisis</h4>
+                    <p>
+                        Comparación entre resultados experimentales, cálculos
+                        estructurales y herramientas digitales.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="seccion">
+
+            <div class="seccion-header">
+                <div>
+                    <div class="numero">04 · Tecnología</div>
+                    <h2>Herramientas digitales</h2>
+                </div>
+            </div>
+
+            <p>
+                Como complemento del proyecto se utilizarán herramientas de programación,
+                inteligencia artificial y análisis estructural. Esto permitirá integrar
+                conocimientos de informática con conceptos propios de la Ingeniería Civil.
+            </p>
+
+            <div class="tecnologia">
+
+                <div class="tech">
+                    <strong>Civil Calculator</strong>
+                    <span>
+                        Apoyo para realizar cálculos relacionados con reacciones,
+                        fuerzas internas y análisis de armaduras.
+                    </span>
+                </div>
+
+                <div class="tech">
+                    <strong>Visual Studio Code</strong>
+                    <span>
+                        Desarrollo de funciones y herramientas digitales que puedan
+                        complementar el análisis del proyecto.
+                    </span>
+                </div>
+
+                <div class="tech">
+                    <strong>Inteligencia Artificial</strong>
+                    <span>
+                        Apoyo en la interpretación de datos, automatización de cálculos
+                        y desarrollo de herramientas de análisis.
+                    </span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="conclusion">
+
+            <div class="numero" style="color:#9ed3f5;">
+                05 · Conclusión
+            </div>
+
+            <h2>Enfoque final del proyecto</h2>
+
+            <p>
+                El proyecto busca integrar teoría estructural, experimentación e innovación
+                tecnológica dentro de una misma actividad. La utilización de modelos impresos
+                en 3D permitirá observar de forma directa cómo responde una estructura ante
+                diferentes condiciones de carga, mientras que las herramientas digitales
+                facilitarán la comparación de resultados y el análisis de la información.
+                De esta forma, el proyecto pretende reforzar el aprendizaje de las armaduras
+                mediante una metodología más visual, práctica y aplicada.
+            </p>
+
+        </section>
+
+        <div class="firma">
+            <div>
+                <strong>Joan Sebastian García Orozco</strong><br>
+                Alumno de Ingeniería Civil
+            </div>
+
+            <div>
+                Proyecto académico · UAD
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <span>Universidad Autónoma de Durango</span>
+        <span>Ingeniería Civil · Proyecto de Armaduras</span>
+    </footer>
+
+</div>
+
+</body>
+</html>
